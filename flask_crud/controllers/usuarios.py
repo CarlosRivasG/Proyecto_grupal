@@ -55,7 +55,7 @@ def procesar_login():
     session['usuario_creador'] = usuario.id
     session['apellido'] = usuario.apellido
 
-    return redirect('/panel')
+    return redirect('/home')
 
 
 
