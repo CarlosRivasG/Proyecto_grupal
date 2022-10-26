@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block titulo %}Panel de pinturas{% endblock %}
+{% block contenido %}
+
+{% include '_menu.html' %}
+
+    <div class="container mt-5 login-title">
+        <h1>Datos</h1>
+    </div>
+    <form action="/file/process" method="post" enctype=multipart/form-data>
+        <input name="file" type="file" class="form-control">
+        <button type="submit">Subir</button>
+    </form>
+
+    <canvas id="myChart" width="2000" height="400"></canvas>
+{% endblock %}
