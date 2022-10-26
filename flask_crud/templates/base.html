@@ -18,17 +18,22 @@
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css'>
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
     <link rel="icon" type="image/x-icon" href="https://gabzin.github.io/landing-page/favicon.ico">
+    <link href="/static/icons/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="/static/icons/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body class="login-box">
     
     {% block contenido %}
+
+    
     {% endblock %}
     
     <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/jquery-3.6.1.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/toastr.min.js') }}"></script>
-
+    <script src="/static/icons/bootstrap/js/bootstrap.min.js"></script>
+        
     <script>
         toastr.options = {
             "closeButton": true,
@@ -47,6 +52,15 @@
 
     {% block librerias %}
     {% endblock %}
+    <footer>
+        <div class="container p-3">
+          <div class="row text-center text-white">
+            <div class="col ml-auto">
+              <p>Copyright &copy Carlos Rivas y Catalina Ubilla 2022</p>
+            </div>
+          </div>
+        </div>       
+      </footer>
 </body>
 
 </html>
