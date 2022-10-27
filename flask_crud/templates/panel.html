@@ -1,14 +1,16 @@
 {% extends 'base.html' %}
-{% block titulo %}Panel de pinturas{% endblock %}
+{% block titulo %}DBGraphics{% endblock %}
 {% block contenido %}
 
 {% include '_menu.html' %}
 
     <div class="container mt-5 login-title">
         <h1>Datos</h1>
-        <hr class="hr">
     </div>
+    <form action="/file/process" method="post" enctype=multipart/form-data>
+        <input name="file" type="file" class="form-control">
+        <button type="submit">Subir</button>
+    </form>
 
-    
 
 {% endblock %}

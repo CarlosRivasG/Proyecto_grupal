@@ -1,13 +1,12 @@
 from flask import redirect, render_template, request, flash, session
-from flask_crud import app
+from flask_crud.__init__ import app
 from flask_crud.models.usuario import Usuario
-from flask_bcrypt import Bcrypt
-bcrypt = Bcrypt(app)
+from flask_crud.__init__ import bcrypt
 
 @app.route("/")
 def login():
 
-    if 'usuario' in session:
+    if 'usuario_nombre' in session:
         flash('Ya estás LOGEADO!', 'warning')
         return redirect('/')
 
@@ -51,11 +50,11 @@ def procesar_login():
         flash("Usuario/Correo/Clave Invalidas", "error")
         return redirect("/")
 
-    session['usuario'] = usuario.nombre
-    session['usuario_creador'] = usuario.id
-    session['apellido'] = usuario.apellido
+    session['usuario_nombre'] = usuario.nombre
+    session['usuario_id'] = usuario.id
+    session['usuario_apellido'] = usuario.apellido
 
-    return redirect('/home')
+    return redirect('/panel')
 
 
 
