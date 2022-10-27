@@ -1,8 +1,6 @@
 import os
-
 from flask import flash
 from flask_crud.config.mysqlconnection import connectToMySQL
-from flask_crud.controllers.pinturas import Pintura
 from flask_crud.models.modelo_base import ModeloBase
 from flask_crud.utils.regex import REGEX_CORREO_VALIDO
 
@@ -19,9 +17,9 @@ class Usuario(ModeloBase):
         self.password = data['password']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
-        self.pinturas= []
+        self.archivos= []
 
-
+    '''
     @classmethod
     def get_usuario_pintura(cls, data):
         query = "SELECT * FROM usuarios JOIN pinturas ON pinturas.usuario_creador = usuarios.id WHERE usuarios.id = %(usuario_creador)s"
@@ -59,7 +57,7 @@ class Usuario(ModeloBase):
             new_pintura=Pintura(pintura_data)
             all_pinturas.append(new_pintura)
         usuario.pinturas = all_pinturas
-        return usuario
+        return usuario'''
 
     @classmethod
     def buscar(cls, dato):

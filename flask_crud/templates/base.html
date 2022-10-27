@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block titulo %}{% endblock %} - Examen</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
     <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ url_for('static', filename='css/toastr.min.css') }}" rel="stylesheet">
     <link href="{{url_for('static', filename='css/font-awesome.min.css')}}" rel="stylesheet">
@@ -17,23 +18,18 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.min.css'>
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css'>
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
-    <link rel="icon" type="image/x-icon" href="https://gabzin.github.io/landing-page/favicon.ico">
-    <link href="/static/icons/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-    <link href="/static/icons/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body class="login-box">
     
     {% block contenido %}
-
-    
     {% endblock %}
     
     <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/jquery-3.6.1.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/toastr.min.js') }}"></script>
-    <script src="/static/icons/bootstrap/js/bootstrap.min.js"></script>
-        
+    <script src="{{ url_for('static', filename= 'js/script.js') }}"></script>
+
     <script>
         toastr.options = {
             "closeButton": true,
@@ -52,15 +48,6 @@
 
     {% block librerias %}
     {% endblock %}
-    <footer>
-        <div class="container p-3">
-          <div class="row text-center text-white">
-            <div class="col ml-auto">
-              <p>Copyright &copy Carlos Rivas y Catalina Ubilla 2022</p>
-            </div>
-          </div>
-        </div>       
-      </footer>
 </body>
 
 </html>

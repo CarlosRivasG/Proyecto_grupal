@@ -9,6 +9,9 @@ pymysql = "*"
 flask-bcrypt = "*"
 gpcharts = "*"
 future = "*"
+sqlalchemy = "*"
+flask-sqlalchemy = "*"
+python-dotenv = "*"
 
 [dev-packages]
 
