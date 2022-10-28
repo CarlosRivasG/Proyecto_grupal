@@ -4,7 +4,6 @@ from flask_crud.__init__ import app
 from werkzeug.utils import secure_filename
 from flask_crud.utils.utils import allowed_file
 import os
-from flask_crud.models import archivo
 import csv
 import json
 
