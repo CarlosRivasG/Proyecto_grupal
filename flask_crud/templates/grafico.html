@@ -3,6 +3,10 @@
 {% block contenido %}
 
 {% include '_menu.html' %}
+
+<div class="container mt-5 login-title">
+    <h1>DBGraphics</h1>
+</div>
 <div>
     <canvas id="myChart"></canvas>
 </div>
@@ -22,33 +26,22 @@
     function someFunction(){
         var row_data = document.getElementById('row_data')
         console.log(row_data.value)
-        if (row_data.value == '40-49'){
-            drawGraph(1)
-        }
-        else if (row_data.value == '50-59'){
-            drawGraph(2)
-        }
-        else if (row_data.value == '60-69'){
-            drawGraph(3)
-        }
-        else if (row_data.value == '70-79'){
-            drawGraph(4)
-        }
-        else if (row_data.value == '80-89'){
-            drawGraph(5)
-        }
-        else if (row_data.value == '>=90'){
-            drawGraph(6)
-        }
-        else{
-            drawGraph(0)
+        for (var i = 0; i < datos.rows.length ; i++){
+            if (row_data.value == datos.rows[i]){
+                drawGraph(i)
+                console.log(i)
+            }
+            else{
+                continue
+            }
+            
         }
     }
     function drawGraph(index){
         const data = {
             labels: datos.header,
             datasets: [{
-              label: 'My First dataset',
+              label: 'Uploaded Data',
               backgroundColor: 'rgb(255, 99, 132)',
               borderColor: 'rgb(255, 99, 132)',
               data: datos.body[index],
@@ -72,7 +65,7 @@
     const data = {
       labels: datos.header,
       datasets: [{
-        label: 'My First dataset',
+        label: 'Uploaded Data',
         backgroundColor: 'rgb(255, 99, 132)',
         borderColor: 'rgb(255, 99, 132)',
         data: datos.body[0],
