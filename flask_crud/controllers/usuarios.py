@@ -2,13 +2,14 @@ from flask import redirect, render_template, request, flash, session
 from flask_crud.__init__ import app
 from flask_crud.models.usuario import Usuario
 from flask_crud.__init__ import bcrypt
+import os
 
 @app.route("/")
 def login():
 
     if 'usuario_nombre' in session:
         flash('Ya estás LOGEADO!', 'warning')
-        return redirect('/')
+        return redirect('/panel')
 
     return render_template("login.html")
 

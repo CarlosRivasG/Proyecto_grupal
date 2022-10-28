@@ -3,41 +3,91 @@
 {% block contenido %}
 
 {% include '_menu.html' %}
+<div>
+    <canvas id="myChart"></canvas>
+</div>
+<select onchange="someFunction()" name="rows" id="row_data">
+    {% for element in datos.rows %}
+        <option value="{{ element }}">{{ element }}</option>
+    {% endfor %}
+</select>
 
-<canvas id="myChart" width="2000" height="400"></canvas>
 {% endblock %}
+{% block librerias %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-    var ctx = document.getElementById('myChart')
-    var myChart = new Chart(ctx, {
-        type: 'bar',
-        data:{
-            datasets: [{
-                label: "Something 1",
-                backgroundColor: ['#6bf1ab','#63d69f','#438c6c','#509c7f','#1f794e','#34444c','#90cAF9','#64B5F6','#42A5F5','#2196F3','#0D47A1'],
-                borderColor: ['black'],
-                borderWidth: 1
-            }]
-        },
-        options:{
-            scales:{
-                y:{
-                    beginAtZero: true
-                }
-            }
+    let myChart;
+    //var myChartOtro = document.getElementById('myChart');
+    var datos = JSON.parse('{{datos|tojson|safe}}');
+    function someFunction(){
+        var row_data = document.getElementById('row_data')
+        console.log(row_data.value)
+        if (row_data.value == '40-49'){
+            drawGraph(1)
         }
-    })
-
-    fetch(`/graphics/grupo_etario.csv`)
-        .then( response => response.json() )
-        .then( datos => mostrar(datos) )
-        .catch( error => console.log(error) )
-
-    const mostrar = (personas) =>{
-        personas.forEach(element => {
-            myChart.data['labels'].push(element.header)
-            myChart.data['datasets'].data.push(element.body)
-        });
+        else if (row_data.value == '50-59'){
+            drawGraph(2)
+        }
+        else if (row_data.value == '60-69'){
+            drawGraph(3)
+        }
+        else if (row_data.value == '70-79'){
+            drawGraph(4)
+        }
+        else if (row_data.value == '80-89'){
+            drawGraph(5)
+        }
+        else if (row_data.value == '>=90'){
+            drawGraph(6)
+        }
+        else{
+            drawGraph(0)
+        }
     }
-
+    function drawGraph(index){
+        const data = {
+            labels: datos.header,
+            datasets: [{
+              label: 'My First dataset',
+              backgroundColor: 'rgb(255, 99, 132)',
+              borderColor: 'rgb(255, 99, 132)',
+              data: datos.body[index],
+            }]
+          };
+        
+          const config = {
+            type: 'bar',
+            data: data,
+            options: {}
+          };
+        if (myChart) {
+            myChart.destroy();
+        }
+    myChart = new Chart(
+        document.getElementById('myChart'),
+      config
+      );
+    }
     
+    const data = {
+      labels: datos.header,
+      datasets: [{
+        label: 'My First dataset',
+        backgroundColor: 'rgb(255, 99, 132)',
+        borderColor: 'rgb(255, 99, 132)',
+        data: datos.body[0],
+      }]
+    };
+  
+    const config = {
+      type: 'bar',
+      data: data,
+      options: {}
+    };
+myChart = new Chart(
+document.getElementById('myChart'),
+config
+);
 </script>
+
+{% endblock %}

@@ -6,6 +6,7 @@ from flask_crud.utils.utils import allowed_file
 import os
 from flask_crud.models import archivo
 import csv
+import json
 
 @app.route("/panel")
 def panel():
@@ -33,28 +34,11 @@ def upload_file():
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             flash("Record was successfully added",'success')
-            data = {}
-            col = []
-            file = url_for('download_file',name=filename)
-            with open(file) as csv_file:
-                csv_reader = csv.reader(csv_file, delimiter=',')
-                line_count = 0
-                for row in csv_reader:
-                    col.append(row)
-                    line_count += 1
-            data = {
-                "header": col[0],
-                "body": col[1:]
-            }
-            return jsonify(data)
+            return redirect('/graphics/'+filename)
         
     flash('Hasta aca llega la funcion upload','info')
     return redirect('panel')
 
-@app.route('/building/graphics')
-def building_graphics():
-    return render_template('grafico.html')
-        
 @app.route('/graphics/<filename>')
 def graphics(filename):
     data = {}
@@ -70,9 +54,20 @@ def graphics(filename):
         "header": col[0],
         "body": col[1:]
     }
-    #archivo.File.save_file(saving_data)
-    #datos_grafico = archivo.File.get_file_by_name(file)
-    return jsonify(data)
+    data2 = {}
+    list1 = []
+    list2 = []
+    for i in data['body']:
+        list2.append(i[0])
+        list1.append(i[1:])
+    data['header'] = data['header'][1:]
+    map(int, list1)
+    data2 = {
+        'header': data['header'],
+        'body': list1,
+        'rows': list2
+    }
+    return render_template('grafico.html',datos=data2)
 
 
 
